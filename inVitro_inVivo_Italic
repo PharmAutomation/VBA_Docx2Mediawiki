@@ -1,0 +1,46 @@
+'----------------------------------------------------------------------------------------------
+'## To setup italic style for all "in vitro" and "in vivo" text
+'-----------------------------------------------------------------------------------------------
+Sub ItalicAuto()
+'
+' ItalicAuto Macros to implement italic for in vivo
+'
+'
+    Selection.Find.ClearFormatting
+    Selection.Find.Replacement.ClearFormatting
+    Selection.Find.Replacement.Font.Italic = True
+    With Selection.Find
+        .Text = "in vivo"
+        .Replacement.Text = "in vivo"
+        .Forward = True
+        .Wrap = wdFindContinue
+        .Format = True
+        .MatchCase = False
+        .MatchWholeWord = False
+        .MatchWildcards = False
+        .MatchSoundsLike = False
+        .MatchAllWordForms = False
+    End With
+    Selection.Find.Execute Replace:=wdReplaceAll
+    
+' ItalicAuto Macros to implement italic for in vitro
+
+    Selection.Find.ClearFormatting
+    Selection.Find.Replacement.ClearFormatting
+    Selection.Find.Replacement.Font.Italic = True
+    With Selection.Find
+        .Text = "in vitro"
+        .Replacement.Text = "in vitro"
+        .Forward = True
+        .Wrap = wdFindContinue
+        .Format = True
+        .MatchCase = False
+        .MatchWholeWord = False
+        .MatchWildcards = False
+        .MatchSoundsLike = False
+        .MatchAllWordForms = False
+    End With
+    Selection.Find.Execute Replace:=wdReplaceAll
+    
+    MsgBox "The active document was correctedt for in vivo and in vitro with italic font style"
+End Sub
