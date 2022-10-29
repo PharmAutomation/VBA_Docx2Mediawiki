@@ -1,0 +1,25 @@
+
+'----------------------------------------------------------------------------------------------
+'## Convert Hyperlinks to wiki format ([link text] or [[#Anchor|text]])
+'-----------------------------------------------------------------------------------------------
+
+Sub Links_conversion()
+Dim HName, Search
+With ActiveDocument
+  While .Hyperlinks.Count > 0
+    HName = .Hyperlinks(1).Name
+    Search = "http"
+    If InStr(1, HName, Search, vbTextCompare) Then
+        .Hyperlinks(1).Range.InsertBefore "[" & .Hyperlinks(1).Address & " "
+        .Hyperlinks(1).Range.InsertAfter "]"
+        .Hyperlinks(1).Delete
+    Else
+        .Hyperlinks(1).Range.InsertBefore "[[#" & .Hyperlinks(1).Name & "|"
+        .Hyperlinks(1).Range.InsertAfter "]]"
+        .Hyperlinks(1).Delete
+    End If
+  Wend
+
+End With
+MsgBox "Hyperlinks created"
+End Sub
