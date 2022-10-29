@@ -1,0 +1,14 @@
+
+'----------------------------------------------------------------------------------------------
+'## Span bookmarks in format <span id="bookmark_name" class="anchor">
+'-----------------------------------------------------------------------------------------------
+
+Sub Anchor()
+With ActiveDocument
+    While .Bookmarks.Count > 0
+        .Bookmarks(1).Range.InsertBefore ("<span id=" & Chr(34) & ActiveDocument.Bookmarks(1).Name & Chr(34) & " class=" & Chr(34) & "anchor" & Chr(34) & "> ")
+        .Bookmarks(1).Delete
+    Wend
+End With
+MsgBox "Anchors created"
+End Sub
