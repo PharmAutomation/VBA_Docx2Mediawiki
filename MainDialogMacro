@@ -1,0 +1,39 @@
+Sub Main()
+ If Dialog("Would you like to delite all headers and footers?") = 1 Then
+   HeaderFooterRemove
+ End If
+ 
+ If Dialog("Would you like to setup italic style for all "in vitro" and "in vivo" text?") = 1 Then
+   ItalicAuto
+ End If
+
+If Dialog("Would you like to put <big> </big> marckdown for titles and UPPERCASE?") = 1 Then
+   BIG_Tags
+ End If
+
+ If Dialog("Would you like to update headings with standart style?") = 1 Then
+   HeadingsStyle
+ End If
+
+ If Dialog("Would you like to apply alignment HTML tags for wiki formatting?") = 1 Then
+   AlignmentTags
+ End If
+ 
+ If Dialog("Would you like to create wiki indent {:}  for {a) bla bla bla} like paragraphs ?") = 1 Then
+    list_auto
+ End If
+ 
+End Sub
+
+'------------------------------------------------------------------------------------
+'## Dialog functions
+'------------------------------------------------------------------------------------
+Private Function Dialog(Title) As Integer
+Dim Answer As Integer
+Answer = MsgBox(Title, 4, "proceed with")
+If Answer = 6 Then
+  Dialog = 1
+Else
+  Dialog = 0
+End If
+End Function
