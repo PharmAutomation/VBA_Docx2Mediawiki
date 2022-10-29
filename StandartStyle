@@ -1,0 +1,57 @@
+'----------------------------------------------------------------------------------------------
+'## To setup standard style for all paragraphs of more than 0 level. Level is equal to style level
+'-----------------------------------------------------------------------------------------------
+Sub HeadingsStyle()
+'script updating paragraph style depend on previous level {Level}
+'counting paragraphs
+num_parag = ActiveDocument.Paragraphs.Count
+
+'counting titles
+headings = 0
+'iterate all the paragraphs and if more then 0 setup equal level
+
+    For x = 1 To num_parag
+        Level = ActiveDocument.Paragraphs(x).OutlineLevel
+        Align = ActiveDocument.Paragraphs(x).Alignment
+        
+        If Level = 1 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading1
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 2 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading2
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 3 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading3
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 4 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading4
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 5 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading5
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 6 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading6
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 7 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading7
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 8 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading8
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        ElseIf Level = 9 Then
+            ActiveDocument.Paragraphs(x).Style = wdStyleHeading9
+            ActiveDocument.Paragraphs(x).Alignment = Align
+            headings = headings + 1
+        End If
+    Next x
+'printing message about number of level
+MsgBox "The active document headings was updated with standart style"
+End Sub
