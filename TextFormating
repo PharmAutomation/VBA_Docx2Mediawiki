@@ -1,0 +1,42 @@
+'----------------------------------------------------------------------------------------------
+'## To put alignment HTML tags for wiki formatting the same as in docx file
+'-----------------------------------------------------------------------------------------------
+Sub AlignmentTags()
+
+'counting Paragraphs
+num_parag = ActiveDocument.Paragraphs.Count
+
+    For x = 1 To num_parag
+        myRange = ActiveDocument.Paragraphs(x).Range
+        ActiveDocument.Range(ActiveDocument.Paragraphs(x).Range.Start, ActiveDocument.Paragraphs(x).Range.End - 1).Select
+        Align = ActiveDocument.Paragraphs(x).Alignment
+        paragLen = Len(myRange)
+        inTable = Selection.Information(wdWithInTable)
+        mrgnTop = ActiveDocument.Paragraphs(x).SpaceBefore
+        mrgnBottom = ActiveDocument.Paragraphs(x).SpaceAfter
+        
+        If paragLen > 2 And inTable = False Then
+            If Align = wdAlignParagraphRight Then
+                Selection.InsertBefore ("<div style='text-align: right; margin-top: " & mrgnTop & "px; margin-bottom: " & mrgnBottom & "px;'>")
+                Selection.InsertAfter ("</div>")
+            
+            ElseIf Align = wdAlignParagraphCenter Then
+                Selection.InsertBefore ("<div style='text-align: center; margin-top: " & mrgnTop & "px; margin-bottom: " & mrgnBottom & "px;'>")
+                Selection.InsertAfter ("</div>")
+                
+            ElseIf Align = wdAlignParagraphLeft Then
+                Selection.InsertBefore ("<div style='text-align: left; margin-top: " & mrgnTop & "px; margin-bottom: " & mrgnBottom & "px;'>")
+                Selection.InsertAfter ("</div>")
+              
+            ElseIf Align = wdAlignParagraphJustify Then
+                Selection.InsertBefore ("<div style='text-align: justify; margin-top: " & mrgnTop & "px; margin-bottom: " & mrgnBottom & "px;'>")
+                Selection.InsertAfter ("</div>")
+                
+             End If
+        End If
+    Next x
+
+MsgBox "The active document was formatted with wiki tags"
+
+
+End Sub
