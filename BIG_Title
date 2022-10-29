@@ -1,0 +1,32 @@
+'----------------------------------------------------------------------------------------------
+'## Put title sections text within <big> </big> markdown tags
+'-----------------------------------------------------------------------------------------------
+Sub BIG_Tags()
+
+'counting Paragraphs
+num_parag = ActiveDocument.Paragraphs.Count
+
+    For x = 1 To num_parag
+        myRange = ActiveDocument.Paragraphs(x).Range
+        ActiveDocument.Range(ActiveDocument.Paragraphs(x).Range.Start, ActiveDocument.Paragraphs(x).Range.End - 1).Select
+        Level = ActiveDocument.Paragraphs(x).OutlineLevel
+        UpperCase = ActiveDocument.Paragraphs(x).Range.Case
+        Bold = ActiveDocument.Paragraphs(x).Range.Font.Bold
+        paragLen = Len(myRange)
+        inTable = Selection.Information(wdWithInTable)
+        If paragLen > 2 And inTable = False Then
+            If Level = 1 Or Level = 2 Or Level = 3 Or Level = 4 Or Level = 5 Or Level = 6 Then
+                Selection.InsertBefore ("<big>")
+                Selection.InsertAfter ("</big>")
+             ElseIf UpperCase = wdUpperCase And Bold = True Then
+                Selection.InsertBefore ("<big>")
+                Selection.InsertAfter ("</big>")
+             
+             End If
+        End If
+    Next x
+
+MsgBox "The active document was formatted with <big> wiki tags"
+
+
+End Sub
