@@ -1,0 +1,26 @@
+'----------------------------------------------------------------------------------------------
+'## convert title
+'-----------------------------------------------------------------------------------------------
+Sub ConvertTitles()
+Dim MarkInsertBefore As Variant
+Dim MarkInsertAfter As Variant
+Dim isrtBefore As String
+Dim isrtAfter As String
+
+num_parag = ActiveDocument.Paragraphs.Count
+MarkInsertBefore = Array("= ", "== ", "=== ", "==== ", "===== ", "====== ", "======= ", "======== ", "========= ")
+MarkInsertAfter = Array(" =", " ==", " ===", " ====", " =====", " ======", " =======", " ========", " =========")
+
+For x = 1 To num_parag
+    Level = ActiveDocument.Paragraphs(x).OutlineLevel
+    ActiveDocument.Range(ActiveDocument.Paragraphs(x).Range.Start, ActiveDocument.Paragraphs(x).Range.End - 1).Select
+    inTable = Selection.Information(wdWithInTable)
+    
+    If inTable = False And Level > 0 And Level < 10 Then
+        'Debug.Print Level
+        Selection.InsertBefore (MarkInsertBefore(Level - 1))
+        Selection.InsertAfter (MarkInsertAfter(Level - 1))
+    End If
+Next x
+
+End Sub
